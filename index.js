@@ -23,7 +23,7 @@ const BASE_API_URL = 'https://api.omnicloud.io';
 
     // 2. Whare are we going to create the VM?
     // We need to obtain all Regions and choose one
-    // the region (can be hardcoded if the region_id is know upfront)
+    // the region can be hardcoded if the region_id is know upfront
     // ----------------------------------------------------------------------------------------
     const regionsResponse = await axios.get(`${BASE_API_URL}/regions`);
     console.log("-------------------------");
@@ -37,7 +37,7 @@ const BASE_API_URL = 'https://api.omnicloud.io';
 
     // 3. Which source image we are going to use for the VM?
     // We need to obtain all Images and choose one
-    // the image (can be hardcoded if the image_id is know upfront)
+    // the image can be hardcoded if the image_id is know upfront
     // ----------------------------------------------------------------------------------------
     const imagesResponse = await axios.get(`${BASE_API_URL}/images`);
     console.log("-------------------------");
@@ -71,7 +71,7 @@ const BASE_API_URL = 'https://api.omnicloud.io';
 
     // 3. Which VPC / network / routable network?
     // We need to obtain all Networks within the region and choose one
-    // the network (can be hardcoded if the network_id is know upfront)
+    // the network can be hardcoded if the network_id is know upfront
     //
     // Note: the VPC are customer specific resources, so you will need to identify yourself 
     // by provide your token as Authorization Bearer header
@@ -91,7 +91,7 @@ const BASE_API_URL = 'https://api.omnicloud.io';
 
     // 4. If you need backup, then which backup schedule
     // We need to obtain all Backup Schedules and choose one
-    // the backup schedule (can be hardcoded if the backup_schedule_id is know upfront)
+    // the backup schedule can be hardcoded if the backup_schedule_id is know upfront
     //
     // Note: the Backup Schedules are customer specific resources, so you will need to identify yourself 
     // by provide your token as Authorization Bearer header
