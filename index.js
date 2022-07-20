@@ -4,6 +4,8 @@ require('dotenv').config();
 // The base url. swagger-ui docs can be found here: https://api.omnicloud.io/api
 const BASE_API_URL = 'https://api.omnicloud.io';
 
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
 (async () => {
     // 1. Obtain JWT token by providing user credentials
     // ----------------------------------------------------------------------------------------
@@ -164,7 +166,7 @@ const BASE_API_URL = 'https://api.omnicloud.io';
             newlyCreatedVmId = virtualMachine["id"];
             hasVMProvisioned -= true;
         }
-        console.log(virtualMachine);
+   package-lock.json     console.log(virtualMachine);
         sleep(500);
         wiatRetries++;
     }
@@ -182,5 +184,3 @@ const BASE_API_URL = 'https://api.omnicloud.io';
              headers: {"Authorization": `Bearer ${token}`}
         });
 })();
-
-const sleep = ms => new Promise(r => setTimeout(r, ms));
