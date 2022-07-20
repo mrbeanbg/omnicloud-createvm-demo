@@ -2,7 +2,7 @@
 
 In order to run this you will need to:
 1. Install [Node](https://nodejs.org/en/) (if you don't have it already)
-2. Install the packages:
+2. Install the dependencies/packages:
 ```
 npm install
 ```
