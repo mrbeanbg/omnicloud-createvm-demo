@@ -3,7 +3,6 @@ require('dotenv').config();
 
 // The base url. swagger-ui docs can be found here: https://api.omnicloud.io/api
 const BASE_API_URL = 'https://api.omnicloud.io';
-// const BASE_API_URL = 'http://localhost:6543';
 
 (async () => {
     // 1. Obtain JWT token by providing user credentials
