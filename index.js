@@ -32,7 +32,7 @@ const BASE_API_URL = 'https://api.omnicloud.io';
     // You can hardcode the region_id if you know the exact id upfront
     // Note: region_id and physcical_region_id are used interchangeable within the Omnicloud Public API
     // in this case we will obtain the id of the Jakarta region
-    const region_id = regionsResponse.data['regions'].find(region => region["name"] === "Singapore-Batam")["id"];
+    const region_id = regionsResponse.data['regions'].find(region => region["name"] === "Jakarta")["id"];
 
 
     // 3. Which source image we are going to use for the VM?
