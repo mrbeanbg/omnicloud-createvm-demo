@@ -115,11 +115,12 @@ const BASE_API_URL = 'https://api.omnicloud.io';
     //
     // Note: you will need to identify yourself by provide your token as Authorization Bearer header
     // ----------------------------------------------------------------------------------------
+    const vm_name = "test-vm";
     try {
     const createVM = await axios.post(
         `${BASE_API_URL}/projects/${project_id}/physical-regions/${region_id}/instanceswe`,
         {
-            "vm_instance_name": "test-vm",
+            "vm_instance_name": vm_name,
             "source_type": "image",
             // soure_object_id should point to the image_id
             "source_object_id": image_id,
@@ -146,4 +147,40 @@ const BASE_API_URL = 'https://api.omnicloud.io';
     } catch (err) {
         console.log(err);
     }
+
+    // wait for the VM to provision
+    let newlyCreatedVmId = null;
+    let hasVMProvisioned = false;
+    let wiatRetries = 0;
+    while( !hasVMProvisioned && !wiatRetries < 10 ) {
+        const virtualMachinesResponse = await axios.get(
+            `${BASE_API_URL}/projects/${project_id}/physical-regions/${region_id}/instances`,
+            {
+                 headers: {"Authorization": `Bearer ${token}`}
+            });
+
+        const virtualMachine = virtualMachinesResponse.data["vm_instances"].find(vm => vm["name"] === vm_name);
+        if (typeof virtualMachine !== 'undefined' && virtualMachine["status"] === "ACTIVE") {
+            newlyCreatedVmId = virtualMachine["id"];
+            hasVMProvisioned -= true;
+        }
+        console.log(virtualMachine);
+        sleep(500);
+        wiatRetries++;
+    }
+
+    if (wiatRetries == 10 && !hasVMProvisioned) {
+        // if not provisioned within 5 seconds, the there is something wrong
+        console.log("The VM should not have provisioned yet. Normally this should not happen");
+        return -1;
+    }
+
+    // delete the vm
+    await axios.delete(
+        `${BASE_API_URL}/projects/${project_id}/regions/${region_id}/instances/${newlyCreatedVmId}`,
+        {
+             headers: {"Authorization": `Bearer ${token}`}
+        });
 })();
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
