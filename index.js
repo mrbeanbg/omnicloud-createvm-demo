@@ -166,7 +166,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
             newlyCreatedVmId = virtualMachine["id"];
             hasVMProvisioned -= true;
         }
-   package-lock.json     console.log(virtualMachine);
+        console.log(virtualMachine);
         sleep(500);
         wiatRetries++;
     }
