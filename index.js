@@ -173,7 +173,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
     if (wiatRetries == 10 && !hasVMProvisioned) {
         // if not provisioned within 5 seconds, the there is something wrong
-        console.log("The VM should not have provisioned yet. Normally this should not happen");
+        console.log("The VM hans't provisioned yet. Normally this should not happen");
         return -1;
     }
 
